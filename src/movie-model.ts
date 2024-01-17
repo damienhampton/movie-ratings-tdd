@@ -1,6 +1,15 @@
-export type Movie = {
+import Base = Mocha.reporters.Base;
+
+export type BaseMovie = {
   id: number;
   name: string;
   votes: number;
-  tmdbRating: number;
+};
+
+export type MovieDBRecord = BaseMovie & {
+  tmdbId: number;
+};
+
+export type Movie = BaseMovie & {
+  tmdbRating?: number;
 };
