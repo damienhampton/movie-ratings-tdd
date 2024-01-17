@@ -1,17 +1,13 @@
 import express from "express";
+import { MovieServiceInterface } from "./movie-service";
 
-export type Movie = {
-  id: number;
-  name: string;
-  votes: number;
-  tmdbRating: number;
-};
-
-export function createMovieApp(movies: Movie[]) {
+export function createMovieApp(service: MovieServiceInterface) {
   const app = express();
-  app.post("/movie/1234/vote", (req, res) => res.send());
-  app.get("/movie/:movieId", (req, res) => {
-    res.json(movies.find((movie) => movie.id === parseInt(req.params.movieId)));
+  app.post("/movie/:movieId/vote", async (req, res) => {
+    res.send(await service.addVote(parseInt(req.params.movieId)));
+  });
+  app.get("/movie/:movieId", async (req, res) => {
+    res.json(await service.getMovie(parseInt(req.params.movieId)));
   });
   return app;
 }
