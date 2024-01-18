@@ -28,9 +28,21 @@ class MovieService implements MovieServiceInterface {
 }
 
 // contract tests
-// movieServiceContractTests(
-//   new MovieService(<MovieDBInterface>{}, <TMDBInterface>{})
-// );
+movieServiceContractTests("MovieService", (params) => {
+  const moviedb = <MovieDBInterface>{};
+  moviedb.getMovie = async () => ({
+    id: params.id,
+    name: params.name || "",
+    votes: params.votes || 0,
+    tmdbId: 9999,
+  });
+  const tmdb = <TMDBInterface>{};
+  tmdb.getMovieDetails = async () => ({
+    id: 9999,
+    vote_average: params.tmdbRating || 0,
+  });
+  return new MovieService(moviedb, tmdb);
+});
 
 // other tests!
 describe("Movie Service", () => {
