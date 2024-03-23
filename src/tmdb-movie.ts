@@ -4,5 +4,5 @@ export type TMDBMovie = {
 };
 
 export interface TMDBInterface {
-  getMovieDetails(getMovieDetails: number): Promise<TMDBMovie | undefined>;
+  getMovieDetails(id: number): Promise<TMDBMovie | undefined>;
 }
