@@ -1,31 +1,9 @@
-import { MovieServiceInterface } from "./movie-service";
-import { Movie, MovieDBRecord } from "./movie-model";
+import { MovieDBRecord } from "./movie-model";
 import sinon from "sinon";
 import { TMDBInterface, TMDBMovie } from "./tmdb-movie";
 import { MovieDBInterface } from "./movie-db";
 import { movieServiceContractTests } from "./movie-service-contract.spec";
-
-class MovieService implements MovieServiceInterface {
-  constructor(private moviedb: MovieDBInterface, private tmdb: TMDBInterface) {}
-
-  async addVote(movieId: number): Promise<void> {
-    return;
-  }
-
-  async getMovie(movieId: number): Promise<Movie | undefined> {
-    const maybeMovie = await this.moviedb.getMovie(movieId);
-    if (maybeMovie === undefined) {
-      return;
-    }
-    const tmdbMovie = await this.tmdb.getMovieDetails(maybeMovie.tmdbId);
-    return {
-      id: movieId,
-      name: maybeMovie.name,
-      votes: maybeMovie.votes,
-      tmdbRating: tmdbMovie?.vote_average,
-    };
-  }
-}
+import { MovieService } from "./movie-service";
 
 // contract tests
 movieServiceContractTests("MovieService", (params) => {

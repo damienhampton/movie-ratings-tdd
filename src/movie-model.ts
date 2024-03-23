@@ -1,5 +1,3 @@
-import Base = Mocha.reporters.Base;
-
 export type BaseMovie = {
   id: number;
   name: string;

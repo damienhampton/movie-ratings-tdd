@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "ts-node src/app.ts",
-    "test": "mocha"
+    "test": "mocha src/**/*.spec.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
