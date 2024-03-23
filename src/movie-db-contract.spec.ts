@@ -41,6 +41,11 @@ export function movieDBContractTests(
           });
         });
       });
+      context("with movieId 9999", () => {
+        it("should return undefined", async () => {
+          expect(await movieDb.getMovie(9999)).to.be.undefined;
+        });
+      });
     });
   });
 }
