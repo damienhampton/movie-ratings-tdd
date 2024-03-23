@@ -1,11 +1,9 @@
 import { MovieDBInterface } from "./movie-db";
 import { MovieDBRecord } from "./movie-model";
 
-type CreateTestMovieDBParams = MovieDBRecord[];
-
 export function movieDBContractTests(
   name: string,
-  createTestMovieDB: (params: CreateTestMovieDBParams) => MovieDBInterface
+  createTestMovieDB: (params: MovieDBRecord[]) => MovieDBInterface
 ) {
   describe(`${name}: movie db contract tests`, () => {
     context("getMovie", () => {
